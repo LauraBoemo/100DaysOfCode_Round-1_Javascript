@@ -42,7 +42,6 @@ function Pessoa() {
         // Incrementando idade
         console.log(this.idade)
         // Imprimir no console para ter visibilidade
-        // Não vou perder o dia
     }.bind(this), 1000) 
     // Repete a cada 1000 milisegundos, um segundo
     // Note que eu coloquei o ".bind", que se refere à amarração do "this" do objeto ao "this" da função

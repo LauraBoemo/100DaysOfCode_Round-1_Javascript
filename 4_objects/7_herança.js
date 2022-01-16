@@ -31,3 +31,39 @@ const filho = { __proto__: pai, attr2: 'C'}
 
 console.log(filho.attr1) // Vai retornar A
 console.log(filho.attr0) // Vai retornar Z
+
+// Uma maneira diferente de criar protótipos
+
+const carro = {
+    velAtual: 0,
+    velMax: 200,
+    acelerarMais(delta) {
+        if(this.velAtual + delta <= this.velMax) {
+            this.velAtual += delta
+        } else {
+            this.velAtual += this.velMax
+        }
+    },
+    status() {
+        return `${this.velAtual}Km/h de ${this.velMax}Km/h`
+    }
+}
+
+const ferrari = {
+    modelo: 'F40',
+    velMax: 324 // Shadowing
+}
+
+const volvo = {
+    modelo: 'V40',
+    status() {
+        return `${this.modelo}: ${super.status()}`
+    }
+}
+
+// Ou seja, aqui eu digo "Ferrari tem Carro como seu protótipo"
+Object.setPrototypeOf(ferrari, carro)
+Object.setPrototypeOf(volvo, carro)
+
+console.log(ferrari.acelerarMais(100))
+console.log(ferrari.status(100))
